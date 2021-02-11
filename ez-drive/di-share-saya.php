@@ -128,7 +128,7 @@ include 'Controller/koneksi.php';
                                 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="tentang-kami.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
+                                <a class="nav-link" href="about-us.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
                                 
                             </li>
                         </ul>

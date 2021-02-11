@@ -64,28 +64,6 @@ include 'Controller/koneksi.php';
 
                             </div>
                         </li>
-                         <li class="nav-item dropdown connection">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <p class="btn btn-primary"><i class="fas fa-f fa-upload"></i>Upload File</p> </a>
-                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
-                                <form action="Controller/upload-controller.php" enctype="multipart/form-data" method="post">
-                                <li class="connection-list">
-                                    <div class="row">
-                                        <p>Pilih File</p>
-                                        <p style="color: red"> (Max. 20 MB)</p>
-                                       <input class="form-control" id="file" type="file" name="berkas">
-                                       <p align="center" style="font:12">---optional---</p>
-                                       <input type="text" class="form-control" name="tag" placeholder="tag nya..">
-                                       <input type="text" class="form-control" name="deskripsi" placeholder="deskripsi">
-
-                                    </div>
-                                   
-                                </li>
-                                <li>
-                                    <div class="conntection-footer"><input class="btn btn-primary" type="Submit" value="Upload Now!"></div>
-                                </li>
-                                </form>
-                            </ul>
-                        </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="logo/icon-profile.png" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -110,27 +88,24 @@ include 'Controller/koneksi.php';
         <div class="nav-left-sidebar sidebar-dark">
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <a class="d-xl-none d-lg-none" href="#">Tentang Kami</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
+	                </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
                             <li class="nav-divider">
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="home.php" aria-expanded="false"><i class="fa fa-fw fa-folder"></i>File Saya</a>
-                                  
+                                <a class="nav-link" href="home.php" aria-expanded="false"><i class="fa fa-fw fa-folder"></i>File Saya</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="di-share-saya.php" aria-expanded="false" ><i class="fas fa-f fa-share"></i>Dibagikan dengan Saya</a>
-                                
+                                <a class="nav-link" href="di-share-saya.php" aria-expanded="false" ><i class="fas fa-f fa-share"></i>Dibagikan dengan Saya</a> 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about-us.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
+                                <a class="nav-link active" href="about-us.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
                                 
                             </li>
                         </ul>
@@ -153,11 +128,7 @@ include 'Controller/koneksi.php';
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">File Saya </h2>
-                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
-                                <div class="page-breadcrumb">
-                                  
-                                </div>
+                                <h2 class="pageheader-title">Tentang Kami</h2>
                             </div>
                         </div>
                     </div>
@@ -165,58 +136,71 @@ include 'Controller/koneksi.php';
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     <div class="ecommerce-widget">
-
                         <div class="row">
-                            <?php 
-                            $id_user = $_SESSION['id_user'];
-                            $query = mysqli_query($koneksi, "select * from files where id_user= $id_user");
-                            while($data=mysqli_fetch_array($query)) {                     
-                         
-                            ?>
-
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <?php if(strpos($data['url_files'], '.pdf') !== false){?>
-                                            <div style="align: center"><img src="logo/pdf.PNG" width="100px" height="100px"></div>
-                                        <?php } elseif(strpos($data['url_files'], '.csv') !== false || strpos($data['url_files'], '.xls') || strpos($data['url_files'], '.xlxs')){?>
-                                            <img src="logo/xls.PNG" width="100px" height="100px">
-                                        <?php } elseif(strpos($data['url_files'], '.zip') !== false || strpos($data['url_files'], '.rar') || strpos($data['url_files'], '.7zip')){?>
-                                            <img src="logo/archive.PNG" width="100px" height="100px">
-                                        <?php } elseif(strpos($data['url_files'], '.ppt') !== false || strpos($data['url_files'], '.pptx')){?>
-                                            <img src="logo/ppt.PNG" width="100px" height="100px">
-                                        <?php } elseif(strpos($data['url_files'], '.doc') !== false || strpos($data['url_files'], '.docx')){?>
-                                            <img src="logo/doc.PNG" width="100px" height="100px">
-                                        <?php } elseif(strpos($data['url_files'], '.png') !== false || strpos($data['url_files'], '.jpg')|| strpos($data['url_files'], '.jpeg')){?>
-                                            <img src="logo/image.PNG" width="100px" height="100px">
-                                        <?php } else{?>
-                                            <img src="logo/other.PNG" width="100px" height="100px">
-                                        <?php } ?>
-                                        <h5 class="text-muted"><a href="files_upload/<?php echo $data['url_files']?>" download><?php echo $data['url_files']?></h5>
-                                        <h5 class="text-muted"><?php echo $data['upload_file']?></h5>
-                                        <h5 class="text-muted"><i class="fa fa-fw fa-lock"></i>Private</h5>
-
-                                        <div class="metric-value d-inline-block">
-                                            <a href="Controller/hapus-file.php?id_files=<?php echo $data['id_files'];?>" class="btn btn-default"><i class="fa fa-fw fa-trash"></i>Hapus</a>
-                                        </div>
-                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                                        <a href="share.php?id_files=<?php echo $data['id_files']; ?> & nama_files=<?php echo $data['url_files']; ?> " class="btn btn-default"><i class="fa fa-fw fa-share"></i>Share</a>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <img src="logo/logo.png" alt="logo" style="width:400px;height:200px;">
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <h5></h5>
+                                                <h5>Ez-drive merupakan media penyimpanan data secara online/Cloud Drive  
+                                                yang bersifat Lite atau  ringan yang dapat menyimpan berbagai jenis data 
+                                                dengan masing - masing  penyimpanan user sebesar 100mb, Perbedaan  dari Ez-drive 
+                                                dengan penyimpanan storage lain adalah eksekusi dari websitenya yang lebih ringan.</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php    }?>
                         </div>
-                        
                         <div class="row">
-                            <!-- ============================================================== -->
-                      
-                            <!-- ============================================================== -->
-
-                     
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
-                                
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="assets/images/alferdo.jpg" alt="Avatar" style="width:200px;border-radius: 50%;">
+                                        <h5></h5>
+                                        <h5 style="text-align: center">Alferdo Doni Fadlillah</h5>
+                                        <h5 style="text-align: center">3011710007</h5>
+                                        <h5 style="text-align: center">Informatika UISI</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="assets/images/dandy.jpg" alt="Avatar" style="width:200px;border-radius: 50%;">
+                                        <h5></h5>
+                                        <h5 style="text-align: center">Dandy Nizam Achmady</h5>
+                                        <h5 style="text-align: center">3011710014</h5>
+                                        <h5 style="text-align: center">Informatika UISI</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="assets/images/dinda.jpg" alt="Avatar" style="width:200px;border-radius: 50%;">
+                                        <h5></h5>
+                                        <h5 style="text-align: center">Dinda Putri Dwi Sunata</h5>
+                                        <h5 style="text-align: center">3011710019</h5>
+                                        <h5 style="text-align: center">Informatika UISI</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="assets/images/firda.jpg" alt="Avatar" style="width:200px;border-radius: 50%;">
+                                        <h5></h5>
+                                        <h5 style="text-align: center">Firdatus Sholichah</h5>
+                                        <h5 style="text-align: center">3011810020</h5>
+                                        <h5 style="text-align: center">Informatika UISI</h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -228,7 +212,7 @@ include 'Controller/koneksi.php';
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2021. All rights reserved Dandy Nizam Achmady
+                             Copyright © 2021. All rights reserved Alferdo,Dandy,Dinda,Firdatus.
                         </div>
                     </div>
                 </div>
@@ -246,25 +230,6 @@ include 'Controller/koneksi.php';
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script>
-        var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    document.forms[0].submit();
-
-  }
-});
-    </script>
-    <script>
-    var uploadField = document.getElementById("file");
-
-uploadField.onchange = function() {
-    if(this.files[0].size > 20097152){
-       alert("Mohon Maaf EZ-Drive hanya menerima Maximum Upload File 20 MB");
-       this.value = "";
-    };
-};
-    </script>
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
