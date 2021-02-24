@@ -1,15 +1,16 @@
 {
-    "name": "codefresh-contrib/php-composer-sample-app",
-    "description": "Example php project for Codefresh pipelines",
+    "name": "alferdo28/ezdrive",
+    "description": "Ez-drive merupakan media penyimpanan data secara online/Cloud Drive yang bersifat Lite",
     "type": "project",
     "require": {
         "monolog/monolog": "^1.24",
-        "phpunit/php-timer": "^1.0.9"
+        "phpunit/php-timer": "^1.0.9",
+        "microsoft/azure-storage-table": "*"
     },
     "authors": [
         {
-            "name": "Kostis Kapelonis",
-            "email": "kostis@codefresh.io"
+            "name": "Alferdo Doni",
+            "email": "alferdo.fadlillah17@student.uisi.ac.id"
         }
     ]
 }
