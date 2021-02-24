@@ -154,6 +154,18 @@ include 'Controller/koneksi.php';
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h2 class="pageheader-title">File Saya </h2>
+                                <?php
+
+                                 $used_storage = 0;
+                                 $id_user = $_SESSION['id_user'];
+                                 $query = mysqli_query($koneksi, "select * from files where id_user= $id_user");
+                                 while($data=mysqli_fetch_array($query)) {
+                                     $used_storage = $used_storage + filesize("files_upload/".$data['url_files'])/1048576 ; 
+                                 } 
+                                ?>
+                                <label for="Store">Digunakan <?php echo round($used_storage,2)."MB "."dari 100MB";?> </label>
+                                <progress id="Store" value="<?php echo $used_storage?>" max="100"></progress>
+
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
                                   
@@ -178,23 +190,23 @@ include 'Controller/koneksi.php';
                                 <div class="card">
                                     <div class="card-body">
                                         <?php if(strpos($data['url_files'], '.pdf') !== false){?>
-                                            <div style="align: center"><img src="logo/pdf.PNG" width="100px" height="100px"></div>
+                                            <div style="align: center"><img src="logo/pdf.png" width="100px" height="100px"></div>
                                         <?php } elseif(strpos($data['url_files'], '.csv') !== false || strpos($data['url_files'], '.xls') || strpos($data['url_files'], '.xlxs')){?>
-                                            <img src="logo/xls.PNG" width="100px" height="100px">
+                                            <img src="logo/xls.png" width="100px" height="100px">
                                         <?php } elseif(strpos($data['url_files'], '.zip') !== false || strpos($data['url_files'], '.rar') || strpos($data['url_files'], '.7zip')){?>
-                                            <img src="logo/archive.PNG" width="100px" height="100px">
+                                            <img src="logo/archive.png" width="100px" height="100px">
                                         <?php } elseif(strpos($data['url_files'], '.ppt') !== false || strpos($data['url_files'], '.pptx')){?>
-                                            <img src="logo/ppt.PNG" width="100px" height="100px">
+                                            <img src="logo/ppt.png" width="100px" height="100px">
                                         <?php } elseif(strpos($data['url_files'], '.doc') !== false || strpos($data['url_files'], '.docx')){?>
-                                            <img src="logo/doc.PNG" width="100px" height="100px">
+                                            <img src="logo/doc.png" width="100px" height="100px">
                                         <?php } elseif(strpos($data['url_files'], '.png') !== false || strpos($data['url_files'], '.jpg')|| strpos($data['url_files'], '.jpeg')){?>
-                                            <img src="logo/image.PNG" width="100px" height="100px">
+                                            <img src="logo/image.png" width="100px" height="100px">
                                         <?php } else{?>
-                                            <img src="logo/other.PNG" width="100px" height="100px">
+                                            <img src="logo/other.png" width="100px" height="100px">
                                         <?php } ?>
                                         <h5 class="text-muted"><a href="files_upload/<?php echo $data['url_files']?>" download><?php echo $data['url_files']?></h5>
                                         <h5 class="text-muted"><?php echo $data['upload_file']?></h5>
-                                        <h5 class="text-muted"><i class="fa fa-fw fa-lock"></i>Private</h5>
+                                        <h5 class="text-muted"><i class="fa fa-fw fa-lock"></i>Private (<?php echo round(filesize("files_upload/".$data['url_files'])/1048576,3); echo "MB";?>)</h5>
 
                                         <div class="metric-value d-inline-block">
                                             <a href="Controller/hapus-file.php?id_files=<?php echo $data['id_files'];?>" class="btn btn-default"><i class="fa fa-fw fa-trash"></i>Hapus</a>

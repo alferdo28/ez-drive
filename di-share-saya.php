@@ -36,7 +36,7 @@ include 'Controller/koneksi.php';
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html"><img src="logo/logo.png" width="135px" height="65px"></a>
+                <a class="navbar-brand" href="home.php"><img src="logo/logo.png" width="135px" height="65px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -128,7 +128,7 @@ include 'Controller/koneksi.php';
                                 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about-us.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
+                                <a class="nav-link" href="tentang-kami.php" aria-expanded="false" ><i class="fas fa-f fa-info"></i>Tentang Kami</a>
                                 
                             </li>
                         </ul>

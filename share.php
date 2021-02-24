@@ -36,7 +36,7 @@ include 'Controller/koneksi.php';
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html"><img src="logo/logo.png" width="135px" height="65px"></a>
+                <a class="navbar-brand" href="home.php"><img src="logo/logo.png" width="135px" height="65px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -152,7 +152,6 @@ include 'Controller/koneksi.php';
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h2 class="pageheader-title">Share File </h2>
-                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
                                   
                                 </div>
@@ -175,9 +174,14 @@ include 'Controller/koneksi.php';
 	                                        <div class="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-12">
 	                                            <div class="user-avatar-info">
 	                                                <div class="m-b-20">
+                                                       <div>
+                                                            <h2 class="mb-1">Get Share Link</h2>
+                                                            <input type="text"  class="form-control form-control-lg" value="<?php if($_SERVER['HTTP_HOST'] == "localhost") {echo $_SERVER['HTTP_HOST']."/ez-drive/preview.php?file=".$_GET['nama_files'];}else{$_SERVER['HTTP_HOST']."/preview.php?file=".$_GET['nama_files'];}?>" id="link" disabled>
+                                                            <button class="btn btn-primary" onclick="myFunction()">Copy</button>
+                                                        </div>
+                                                        <br>
 	                                                    <div class="user-avatar-name">
                                                             <h2 class="mb-1">Pilih User</h2>
-                                                            <p><?php echo $_GET['nama_files']?></p>
                                                         </div>
                                                         <br>
 	                                                  
@@ -257,7 +261,17 @@ input.addEventListener("keyup", function(event) {
 
   }
 });
+
     </script>
+    <script>
+function myFunction() {
+  var copyText = document.getElementById("link");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied link: " + copyText.value);
+}
+</script>
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
